@@ -23,35 +23,20 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css"/>
 	<!-- favicon links -->
 	<link rel="shortcut icon" type="image/ico" href="images/header/favicon.ico" />
-</head>
-<body id = "bd">
-<!-- preloader Start -->
-<input id="bt" type="button" value="Accept">
-<audio id="au" preload="auto" src="https://raw.githubusercontent.com/anars/blank-audio/master/500-milliseconds-of-silence.mp3"></audio>
-<script>
-	
-	const audio = document.getElementById("au");
-	let bt = document.getElementById("bt");
-	console.log(audio);
-	bt.addEventListener("click", ()=>{
-		  audio.play();
-	});
-	const startPlaying = ()=>{
-		  audio.removeEventListener('playing', startPlaying);
-		  bt.classList.add("hide");
-		  audio.src = 'https://freesound.org/data/previews/475/475736_4397472-lq.mp3';
-		  audio.play();
-	}
-	audio.addEventListener('playing', startPlaying);
-	audio.addEventListener('error', ()=>{
-	  console.log("error");
-	});	
 
-</script>
+</head>
+<audio  autoplay> 
+	<source src="song.ogg" type="audio/ogg">
+	<source src="song.mp3" type="audio/mpeg">
+	Your browser does not support the audio element.
+  </audio>
+<body>
+<!-- preloader Start -->
 <div id="preloader">
 	<div id="status"><img src="images/header/preloader.gif" id="preloader_image" alt="loader">
 	</div>
 </div>
+
 
 <!-- Slider Wrapper Start -->
 
@@ -396,31 +381,6 @@ $(window).on("load", function() {
 
 	});
 
-				// noinspection JSUnresolvedVariable
-				let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-				let xhr = new XMLHttpRequest();
-				xhr.open('GET', 'song.mp3');
-				xhr.responseType = 'arraybuffer';
-				xhr.addEventListener('load', () => {
-					let playsound = (audioBuffer) => {
-						let source = audioCtx.createBufferSource();
-						source.buffer = audioBuffer;
-						source.connect(audioCtx.destination);
-						source.loop = false;
-						source.start();
-
-						setTimeout(function () {
-							let t = document.createElement('p');
-							t.appendChild(document.createTextNode((new Date()).toLocaleString() + ': Sound played'));
-							document.querySelector('.output').appendChild(t);
-							playsound(audioBuffer);
-						}, 1000 + Math.random()*2500);
-					};
-
-					audioCtx.decodeAudioData(xhr.response).then(playsound);
-				});
-				xhr.send();
-			
 </script>
 <!--main js file end-->
 </body>
