@@ -52,6 +52,7 @@
 	// Guest Slider Js
 	$('.wd_guest_slider .owl-carousel').owlCarousel({
 		loop:true,
+		
 		margin:45,
 		nav:false,
 		responsive:{
@@ -302,7 +303,7 @@
 	});
 	
 	// CountDown Js
-	var deadline = 'January 26 2020 11:30:00 GMT-0400';
+	var deadline = 'January 26 2020 11:30:00 GMT +5:30';
 		function time_remaining(endtime){
 			var t = Date.parse(endtime) - Date.parse(new Date());
 			var seconds = Math.floor( (t/1000) % 60 );
